@@ -105,11 +105,11 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
-	HAL_TIM_Base_Start(&htim3);
-	HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); // tof servo
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2); // steering servo
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3); // drive servo
+	HAL_TIM_Base_Start(&htim3); // used for delay
+	HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1); // used to check pulse width by hc-sro4
 	
 	UartHelper uh(&huart2);
 	init_HCSR04(&htim3, &htim1);
@@ -142,6 +142,7 @@ int main(void)
 		}
 		sensor_data.frame_id++;
 		uh.tx_msg((uint8_t*)(&sensor_data), sizeof(TX_STM_DATA));
+		//delay_us(10000);
 		
 		//__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, (62500/50) * 0.065);
 		/*uint8_t result = uh.rx_msg((uint8_t*)(&motor_data), sizeof(RX_RPI_DATA), RPI_START_CODE);
@@ -382,7 +383,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 9600;
+  huart2.Init.BaudRate = 38400;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;

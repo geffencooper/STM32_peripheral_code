@@ -423,6 +423,11 @@
               <FileType>8</FileType>
               <FilePath>.\EncoderHelper.cpp</FilePath>
             </File>
+            <File>
+              <FileName>HC-SR04Helper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HC-SR04Helper.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

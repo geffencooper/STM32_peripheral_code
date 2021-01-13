@@ -21,27 +21,24 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
-C:\Users\GeffenPC\Documents\en.STM32F3-Discovery_FW_V1.1.0\STM32F3-Discovery_FW_V1.1.0\Project\peripheral_interface\sensor_interface\MDK-ARM\sensor_interface.uvprojx
-Project File Date:  01/02/2021
+C:\Users\GeffenPC\Documents\peripheral_interface\sensor_interface\MDK-ARM\sensor_interface.uvprojx
+Project File Date:  01/13/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 *** Warning: You are compiling one or more files of source type C++ and have selected 'use MicroLIB'. MicroLIB does not support C++!
   
 Build target 'sensor_interface'
-compiling stm32f3xx_it.c...
 compiling EncoderHelper.cpp...
+EncoderHelper.cpp(19): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	total_distance = encoder_rotations/4.0;
 EncoderHelper.cpp(20): warning:  #1-D: last line of file ends without a newline
   }
 EncoderHelper.cpp(20): warning:  #940-D: missing return statement at end of non-void function "get_encoder_distance" 
   }
-EncoderHelper.cpp: 2 warnings, 0 errors
-compiling main.cpp...
-..\Core\Src\main.cpp(82): warning:  #177-D: variable "motor_data"  was declared but never referenced
-  	RX_RPI_DATA motor_data;
-..\Core\Src\main.cpp: 1 warning, 0 errors
+EncoderHelper.cpp: 3 warnings, 0 errors
 linking...
-Program Size: Code=11024 RO-data=504 RW-data=52 ZI-data=1388  
+Program Size: Code=11036 RO-data=504 RW-data=52 ZI-data=1388  
 FromELF: creating hex file...
 "sensor_interface\sensor_interface.axf" - 0 Error(s), 3 Warning(s).
 
@@ -67,7 +64,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

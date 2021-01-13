@@ -6,6 +6,7 @@
 "sensor_interface\stm32f3xx_it.o"
 "sensor_interface\stm32f3xx_hal_msp.o"
 "sensor_interface\encoderhelper.o"
+"sensor_interface\hc-sr04helper.o"
 "sensor_interface\stm32f3xx_hal_tim.o"
 "sensor_interface\stm32f3xx_hal_tim_ex.o"
 "sensor_interface\stm32f3xx_hal.o"
