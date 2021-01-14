@@ -117,6 +117,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
+	// Create servo objects
 	Servo tof_servo = Servo(&htim4, TIM_CHANNEL_1);
 	tof_servo.set_calibration_values(TOF_MIN, TOF_CENTER, TOF_MAX);
 	
@@ -125,8 +127,13 @@ int main(void)
 	
 	Servo drive_servo = Servo(&htim4, TIM_CHANNEL_3);
 	drive_servo.set_calibration_values(DRIVE_MIN, DRIVE_CENTER, DRIVE_MAX);
+	
+	// enter main loop
+	//#define RX
+	#define TX
   while (1)
   {
+		#ifdef TX
 		/* --------------- Collect Sensor Data --------------- */
 		HCSR04_Read();
 		sensor_data.ultrasonic_data = get_ultrasonic_distance();
@@ -143,25 +150,46 @@ int main(void)
 		/* --------------- TX Sensor Data --------------- */
 		sensor_data.frame_id++;
 		uh.tx_msg((uint8_t*)(&sensor_data), sizeof(TX_STM_DATA));
+		#endif
 		
+		#ifdef RX
 		/* --------------- RX Motor Commands --------------- */
 		//__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, (62500/50) * 0.065);
-		/*uint8_t result = uh.rx_msg((uint8_t*)(&motor_data), sizeof(RX_RPI_DATA), RPI_START_CODE);
-		if(result == 1)
+		/*char result = '_';
+		if(HAL_UART_Receive(&huart2, (uint8_t*)&result, 1, 100) == HAL_TIMEOUT)
 		{
-			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
+			HAL_Delay(100);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+			HAL_Delay(100);
+		}
+		else
+		{
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET);
+			HAL_Delay(100);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_RESET);
+			HAL_Delay(100);
+			
+		}*/
+		
+//		uint8_t result = uh.rx_msg((uint8_t*)(&motor_data), sizeof(RX_RPI_DATA), RPI_START_CODE);
+		/*if(result == 0x60)
+		{
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
+			HAL_Delay(100);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+			HAL_Delay(100);
+		
 			//HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
-				steering_servo.turn(motor_data.steering_value);
-			  drive_servo.turn(motor_data.drive_value);
+				//steering_servo.turn(motor_data.steering_value);
+			  //drive_servo.turn(motor_data.drive_value);
 			  //__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, (62500/50) * motor_data.drive_value);
 		}
 		else
 		{
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+			
 		}*/
-		
-		
-		//HAL_Delay(10);
+		#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -390,7 +418,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 57600;
+  huart2.Init.BaudRate = 38400;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
