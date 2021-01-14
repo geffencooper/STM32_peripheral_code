@@ -18,7 +18,6 @@ uint8_t UartHelper::rx_msg(uint8_t* buffer, int buffer_size, uint32_t start_code
         {
                 return 0;
         }
-				HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_9);
 
         // copy the start code into the buffer
         memcpy(buffer, start_code_buffer, 4);
@@ -26,7 +25,7 @@ uint8_t UartHelper::rx_msg(uint8_t* buffer, int buffer_size, uint32_t start_code
         // get the rest of the message
         for(int i = 4; i < buffer_size; i++)
         {
-                HAL_UART_Receive(handler, buffer+i, 1, 10);
+                HAL_UART_Receive(handler, buffer+i, 1, 1);
         }
         memset(start_code_buffer, 0, 4);
         return 1;

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [sensor_interface\sensor_interface.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image sensor_interface\sensor_interface.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jan 13 13:09:22 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Jan 14 00:07:31 2021
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -455,8 +455,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EXTI1_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;increment_count
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_TogglePin
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f303xc.o(RESET)
 </UL>
@@ -641,12 +641,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[70]"></a>HAL_TIM_ConfigClockSource</STRONG> (Thumb, 214 bytes, Stack size 16 bytes, stm32f3xx_hal_tim.o(i.HAL_TIM_ConfigClockSource))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_TIM_ConfigClockSource &rArr; TIM_ETR_SetConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_TIM_ConfigClockSource &rArr; [local to stm32f3xx_hal_tim_c]::TIM_TI2_ConfigInputStage(TIM_TypeDef*, unsigned, unsigned)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ETR_SetConfig
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_TI2_ConfigInputStage(TIM_TypeDef*, unsigned, unsigned)
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_TI2_ConfigInputStage(TIM_TypeDef*, unsigned, unsigned)
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_TI1_ConfigInputStage(TIM_TypeDef*, unsigned, unsigned)
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_ITRx_SetConfig(TIM_TypeDef*, unsigned)
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ETR_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to main_cpp]::MX_TIM4_Init()
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to main_cpp]::MX_TIM3_Init()
@@ -666,8 +666,8 @@ Global Symbols
 <P><STRONG><a name="[77]"></a>HAL_TIM_IC_ConfigChannel</STRONG> (Thumb, 270 bytes, Stack size 24 bytes, stm32f3xx_hal_tim.o(i.HAL_TIM_IC_ConfigChannel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HAL_TIM_IC_ConfigChannel &rArr; TIM_TI1_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TI1_SetConfig
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_TI2_SetConfig(TIM_TypeDef*, unsigned, unsigned, unsigned)
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_TI2_SetConfig(TIM_TypeDef*, unsigned, unsigned, unsigned)
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TI1_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to main_cpp]::MX_TIM1_Init()
 </UL>
@@ -731,12 +731,12 @@ Global Symbols
 <P><STRONG><a name="[8a]"></a>HAL_TIM_PWM_ConfigChannel</STRONG> (Thumb, 286 bytes, Stack size 16 bytes, stm32f3xx_hal_tim.o(i.HAL_TIM_PWM_ConfigChannel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = HAL_TIM_PWM_ConfigChannel &rArr; [local to stm32f3xx_hal_tim_c]::TIM_OC1_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC2_SetConfig
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC6_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
+<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC6_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC5_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC4_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC3_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to stm32f3xx_hal_tim_c]::TIM_OC1_SetConfig(TIM_TypeDef*, TIM_OC_InitTypeDef*)
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC2_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[local to main_cpp]::MX_TIM4_Init()
 </UL>
