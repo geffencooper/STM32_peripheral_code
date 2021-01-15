@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 	// Steering Servo
-	#define STEER_MAX 0.09
+	#define STEER_MAX 0.089
 	#define STEER_CENTER 0.078
 	#define STEER_MIN 0.065
 	

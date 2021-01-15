@@ -1,7 +1,7 @@
 #include "Servo.h"
 
 // TIM4 has a frequency of 8Mhz with prescaler 128, so effective frequency is 62500 cycles/sec
-// The counter period is 62500/50 cycles (1/50 seconds == 20ms)
+// The counter period is 62500/50 cycles so 1250 cyles, this takes 1/50 seconds == 20ms
 // The pulse width needs to be set to some fraction of this value
 
 // relative value from 0-100%

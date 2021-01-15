@@ -179,8 +179,8 @@ int main(void)
 		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET); // turn on green
 			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET); // turn off red
 			steering_servo.turn(motor_data.steering_value);
-			  //drive_servo.turn(motor_data.drive_value);
-			  //__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, (62500/50) * motor_data.drive_value);
+			drive_servo.turn(motor_data.drive_value);
+			 
 		}
 		else
 		{
