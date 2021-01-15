@@ -34,7 +34,7 @@ uint8_t UartHelper::rx_msg(uint8_t* buffer, int buffer_size, uint32_t start_code
 uint8_t UartHelper::find_start(uint32_t start_code)
 {
         // copy the start code into a buffer
-        static uint8_t start[4];
+        uint8_t start[4];
         memcpy(start, &start_code, 4);
 
         int i = 0;
@@ -42,8 +42,8 @@ uint8_t UartHelper::find_start(uint32_t start_code)
         while(true)
         {
                 // read the next byte from the uart
-                char next = '_';
-								HAL_UART_Receive(handler, (uint8_t*)&next, 1, 100);
+                uint8_t next = 0;
+								HAL_UART_Receive(handler, &next, 1, 20);
 								
                 // if it is equal to the first letter of the start code then start copying byte by byte
                 if(next == start[i])
@@ -53,7 +53,6 @@ uint8_t UartHelper::find_start(uint32_t start_code)
                         if(i == 4)
                         {
                                 return 1;
-                                count = 0;
                         }
                 }
                 else// otherwise start over
@@ -66,7 +65,6 @@ uint8_t UartHelper::find_start(uint32_t start_code)
                 if(count > 50) // 40 is max in case start reading in middle of first message
                 {
                         return 0;
-												count = 0;
                 }
         }
 }

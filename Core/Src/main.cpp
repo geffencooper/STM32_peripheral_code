@@ -129,8 +129,10 @@ int main(void)
 	drive_servo.set_calibration_values(DRIVE_MIN, DRIVE_CENTER, DRIVE_MAX);
 	
 	// enter main loop
-	//#define RX
-	#define TX
+	#define RX
+	//#define TX
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_RESET); // turn off green
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET); // turn off red
   while (1)
   {
 		#ifdef TX
@@ -155,40 +157,36 @@ int main(void)
 		#ifdef RX
 		/* --------------- RX Motor Commands --------------- */
 		//__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, (62500/50) * 0.065);
-		/*char result = '_';
-		if(HAL_UART_Receive(&huart2, (uint8_t*)&result, 1, 100) == HAL_TIMEOUT)
+		
+		// byte test
+		/*uint8_t buff[64] = {0};
+		if(HAL_UART_Receive(&huart2, buff, 1, 1000) == HAL_TIMEOUT)
 		{
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
-			HAL_Delay(100);
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
-			HAL_Delay(100);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_RESET); // turn off green
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET); // turn on red
 		}
 		else
 		{
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET);
-			HAL_Delay(100);
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_RESET);
-			HAL_Delay(100);
-			
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET); // turn on green
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET); // turn off red
 		}*/
 		
-//		uint8_t result = uh.rx_msg((uint8_t*)(&motor_data), sizeof(RX_RPI_DATA), RPI_START_CODE);
-		/*if(result == 0x60)
+		// motor message
+		uint8_t result = uh.rx_msg((uint8_t*)(&motor_data), sizeof(RX_RPI_DATA), RPI_START_CODE);
+		if(result == 1)
 		{
-		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
-			HAL_Delay(100);
-			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
-			HAL_Delay(100);
-		
-			//HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
-				//steering_servo.turn(motor_data.steering_value);
+			result = 0;
+		  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET); // turn on green
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET); // turn off red
+			steering_servo.turn(motor_data.steering_value);
 			  //drive_servo.turn(motor_data.drive_value);
 			  //__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, (62500/50) * motor_data.drive_value);
 		}
 		else
 		{
-			
-		}*/
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_RESET); // turn off green
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET); // turn on red
+		}
 		#endif
     /* USER CODE END WHILE */
 
